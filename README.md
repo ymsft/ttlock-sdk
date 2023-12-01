@@ -1,0 +1,1 @@
+https://euopen.ttlock.com/document/doc?urlName=userGuide%2FekeyEn.html

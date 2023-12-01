@@ -5,10 +5,10 @@ namespace Ymsoft\TTLockSdk\Tests;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Client\ClientExceptionInterface;
 use Ymsoft\TTLockSdk\Exception\TTLockException;
-use Ymsoft\TTLockSdk\Tests\Helper\UseEnv;
+use Ymsoft\TTLockSdk\Tests\Tools\UseEnv;
 use Ymsoft\TTLockSdk\TTLock;
 
-class TTLockOAuthTest extends TestCase
+class OAuthTest extends TestCase
 {
     use UseEnv;
 

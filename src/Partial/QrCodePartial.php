@@ -3,8 +3,10 @@
 namespace Ymsoft\TTLockSdk\Partial;
 
 use Psr\Http\Client\ClientExceptionInterface;
+use Ymsoft\TTLockSdk\Entity\QrCode;
 use Ymsoft\TTLockSdk\Exception\TTLockException;
 use Ymsoft\TTLockSdk\Helper\DateHelper;
+use Ymsoft\TTLockSdk\Helper\SerializeHelper;
 use Ymsoft\TTLockSdk\Service\Client;
 
 class QrCodePartial
@@ -65,23 +67,12 @@ class QrCodePartial
     /**
      * @throws TTLockException
      * @throws ClientExceptionInterface
-     * @return array{
-     *     lockAlias: string,
-     *     type: int,
-     *     qrCodeNumber: int,
-     *     qrCodeContent: string,
-     *     name: string,
-     *     startDate: int,
-     *     endDate: int,
-     *     cyclicConfig: array,
-     *     status: int
-     * }
      */
     public function getQrCodeData(
         string $accessToken,
         int $qrCodeId,
-    ): array {
-        return $this->client->get(
+    ): QrCode {
+        $data = $this->client->get(
             uri: 'https://euapi.ttlock.com/v3/qrCode/getData',
             params: [
                 'clientId' => $this->clientId,
@@ -90,6 +81,8 @@ class QrCodePartial
                 'date' => DateHelper::now(),
             ]
         );
+
+        return SerializeHelper::deserialize($data, QrCode::class);
     }
 
     /**

@@ -2,13 +2,13 @@
 
 namespace Ymsoft\TTLockSdk\Tests;
 
+use PHPUnit\Framework\TestCase;
 use Psr\Cache\InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Ymsoft\TTLockSdk\AuthWrapper;
-use PHPUnit\Framework\TestCase;
 use Ymsoft\TTLockSdk\Exception\TTLockException;
-use Ymsoft\TTLockSdk\Tests\Helper\UseEnv;
+use Ymsoft\TTLockSdk\Tests\Tools\UseEnv;
 use Ymsoft\TTLockSdk\TTLock;
 
 class AuthWrapperTest extends TestCase

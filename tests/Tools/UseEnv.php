@@ -1,6 +1,6 @@
 <?php
 
-namespace Ymsoft\TTLockSdk\Tests\Helper;
+namespace Ymsoft\TTLockSdk\Tests\Tools;
 
 use Symfony\Component\Dotenv\Dotenv;
 

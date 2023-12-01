@@ -3,6 +3,7 @@
 namespace Ymsoft\TTLockSdk;
 
 use Psr\Http\Client\ClientInterface;
+use Ymsoft\TTLockSdk\Partial\LockPartial;
 use Ymsoft\TTLockSdk\Partial\OAuthPartial;
 use Ymsoft\TTLockSdk\Partial\QrCodePartial;
 use Ymsoft\TTLockSdk\Service\Client;
@@ -29,6 +30,14 @@ class TTLock
     public function qrCode(): QrCodePartial
     {
         return new QrCodePartial(
+            clientId: $this->clientId,
+            client: $this->client,
+        );
+    }
+
+    public function lock(): LockPartial
+    {
+        return new LockPartial(
             clientId: $this->clientId,
             client: $this->client,
         );

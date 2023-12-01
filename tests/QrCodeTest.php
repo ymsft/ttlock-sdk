@@ -5,12 +5,13 @@ namespace Ymsoft\TTLockSdk\Tests;
 use PHPUnit\Framework\TestCase;
 use Psr\Cache\InvalidArgumentException;
 use Psr\Http\Client\ClientExceptionInterface;
+use Ymsoft\TTLockSdk\Entity\QrCode;
 use Ymsoft\TTLockSdk\Exception\TTLockException;
 use Ymsoft\TTLockSdk\Helper\DateHelper;
-use Ymsoft\TTLockSdk\Tests\Helper\UseAuthWrapper;
+use Ymsoft\TTLockSdk\Tests\Tools\UseAuthWrapper;
 use Ymsoft\TTLockSdk\TTLock;
 
-class TTLockQrCodeTest extends TestCase
+class QrCodeTest extends TestCase
 {
     use UseAuthWrapper;
 
@@ -50,7 +51,7 @@ class TTLockQrCodeTest extends TestCase
 
         $qrCodeId = $response['qrCodeId'];
 
-        $qrCodeData = $this->wrapper->process(function (TTLock $service, string $accessToken) use ($qrCodeId) {
+        $qrCode = $this->wrapper->process(function (TTLock $service, string $accessToken) use ($qrCodeId) {
             return $service
                 ->qrCode()
                 ->getQrCodeData(
@@ -59,7 +60,7 @@ class TTLockQrCodeTest extends TestCase
                 );
         });
 
-        $this->assertArrayHasKey('qrCodeContent', $qrCodeData);
+        $this->assertInstanceOf(QrCode::class, $qrCode);
 
         $this->wrapper->process(function (TTLock $service, string $accessToken) use ($qrCodeId) {
             $service->qrCode()->deleteQrCode(
